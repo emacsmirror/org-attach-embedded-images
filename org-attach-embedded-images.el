@@ -3,7 +3,7 @@
 ;; Copyright 2018-2021 Free Software Foundation, Inc.
 ;;
 ;; Author: Marco Wahl
-;; Version: 0.1
+;; Version: 0.2
 ;; Keywords: org, media
 ;;
 ;; This file is not part of GNU Emacs.
@@ -74,6 +74,7 @@ POSITION and LIMIT as in `next-single-property-change'."
 		(let ((display-prop
 		       (plist-get (text-properties-at pos) 'display)))
 		  (or (not display-prop)
+                      (and (stringp display-prop) (string= "" display-prop)) ; TODO: better understand this case!
 		      (not (plist-get (cdr display-prop) :data)))))
       (setq pos (next-single-property-change pos 'display nil limit)))
     pos))
