@@ -113,7 +113,7 @@ Scope is the subtree identified by `org-back-to-heading'."
       (goto-char beg)
       (while (< (goto-char (org-attach-embedded-images--next-property-display-data (point) end)) end)
 	(let ((data (plist-get (cdr (plist-get (text-properties-at (point)) 'display)) :data)))
-	  (assert data)
+	  (cl-assert data)
 	  (push (org-attach-embedded-images--attach-with-sha1-name data)
 		names)))
       ;; pass 2
