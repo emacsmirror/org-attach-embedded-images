@@ -3,7 +3,7 @@
 ;; Copyright 2018-2021 Free Software Foundation, Inc.
 ;;
 ;; Author: Marco Wahl
-;; Version: 0.2
+;; Version: 1.0.0
 ;; Keywords: org, media
 ;;
 ;; This file is not part of GNU Emacs.
@@ -27,7 +27,7 @@
 ;; are not org attachments.  For example if you copy and paste a part
 ;; of a web page (containing images) from eww to an org subtree.
 
-;; This module provides command `org-attach-embedded-images-in-subtree'
+;; This module provides command `org-attach-embedded-images'
 ;; to save such images as attachments and insert org links to them.
 
 ;; Install:
@@ -45,7 +45,7 @@
 
 ;; Use
 
-;;     M-x org-attach-embedded-images-in-subtree
+;;     M-x org-attach-embedded-images
 
 ;; in a subtree with embedded images.  The images get attached and can
 ;; later be reviewed.
@@ -98,8 +98,9 @@ Return the filename."
 ;; Command
 
 ;;;###autoload
-(defun org-attach-embedded-images-in-subtree ()
-  "Save the displayed images as attachments and insert links to them."
+(defun org-attach-embedded-images ()
+  "Save the displayed images as attachments and insert links to them.
+Scope is the subtree identified by `org-back-to-heading'."
   (interactive)
   (when (org-before-first-heading-p)
     (user-error "Before first heading.  Nothing has been attached."))
